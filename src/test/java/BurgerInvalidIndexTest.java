@@ -9,6 +9,10 @@ public class BurgerInvalidIndexTest {
 
     private Burger burger;
 
+    private static final int EXISTING_INGREDIENT_INDEX = 0;
+    private static final int NON_EXISTENT_INGREDIENT_INDEX = 999;
+    private static final int ANOTHER_NON_EXISTENT_INDEX = 1000;
+
     @Mock
     private Bun mockBun;
 
@@ -28,17 +32,17 @@ public class BurgerInvalidIndexTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testMoveIngredientInvalidFromIndex() {
-        burger.moveIngredient(999, 0);
+    public void testMoveIngredientFromNonExistentIndex() {
+        burger.moveIngredient(NON_EXISTENT_INGREDIENT_INDEX, EXISTING_INGREDIENT_INDEX);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testMoveIngredientInvalidToIndex() {
-        burger.moveIngredient(0, 999);
+    public void testMoveIngredientToNonExistentIndex() {
+        burger.moveIngredient(EXISTING_INGREDIENT_INDEX, NON_EXISTENT_INGREDIENT_INDEX);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testMoveIngredientBothInvalidIndexes() {
-        burger.moveIngredient(999, 1000);
+    public void testMoveIngredientBetweenNonExistentIndexes() {
+        burger.moveIngredient(NON_EXISTENT_INGREDIENT_INDEX, ANOTHER_NON_EXISTENT_INDEX);
     }
 }
